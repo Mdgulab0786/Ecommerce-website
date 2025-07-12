@@ -201,7 +201,7 @@ const Categories: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters */}
-          <div className="lg:w-1/4">
+          <div className="w-full lg:w-1/4">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-4">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">Filters</h3>
@@ -292,21 +292,21 @@ const Categories: React.FC = () => {
           </div>
 
           {/* Main Content */}
-          <div className="lg:w-3/4">
+          <div className="w-full lg:w-3/4">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 space-y-4 sm:space-y-0">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">
+                <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
                   {currentCategory ? currentCategory.name : 'All Products'}
                 </h1>
                 <p className="text-gray-600">{sortedProducts.length} products found</p>
               </div>
 
-              <div className="flex items-center space-x-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
                 {/* Sort */}
                 <select
                   onChange={(e) => setFilters({...filters, sortBy: e.target.value as any})}
-                  className="border border-gray-300 rounded-md px-3 py-2 text-sm"
+                  className="w-full sm:w-auto border border-gray-300 rounded-md px-3 py-2 text-sm"
                 >
                   <option value="">Sort by</option>
                   <option value="price_asc">Price: Low to High</option>
@@ -316,16 +316,16 @@ const Categories: React.FC = () => {
                 </select>
 
                 {/* View Mode */}
-                <div className="flex border border-gray-300 rounded-md">
+                <div className="flex border border-gray-300 rounded-md w-full sm:w-auto">
                   <button
                     onClick={() => setViewMode('grid')}
-                    className={`p-2 ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'text-gray-600'}`}
+                    className={`flex-1 sm:flex-none p-2 ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'text-gray-600'}`}
                   >
                     <Grid className="h-4 w-4" />
                   </button>
                   <button
                     onClick={() => setViewMode('list')}
-                    className={`p-2 ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'text-gray-600'}`}
+                    className={`flex-1 sm:flex-none p-2 ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'text-gray-600'}`}
                   >
                     <List className="h-4 w-4" />
                   </button>
@@ -336,7 +336,7 @@ const Categories: React.FC = () => {
             {/* Products Grid */}
             <div className={`grid gap-6 ${
               viewMode === 'grid' 
-                ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
+                ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3' 
                 : 'grid-cols-1'
             }`}>
               {sortedProducts.map((product) => (

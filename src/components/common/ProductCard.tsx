@@ -59,18 +59,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '', onQu
     >
       {/* Discount badge */}
       {discountPercentage > 0 && (
-        <div className="absolute top-3 left-3 z-10">
+        <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10">
           <Badge variant="error" size="sm" className="flex items-center space-x-1">
-            <Zap className="h-3 w-3" />
+            <Zap className="h-2 w-2 sm:h-3 sm:w-3" />
             <span>{discountPercentage}% OFF</span>
           </Badge>
         </div>
       )}
 
       {/* Fast delivery badge */}
-      <div className="absolute top-3 right-12 z-10">
+      <div className="absolute top-2 sm:top-3 right-10 sm:right-12 z-10">
         <Badge variant="success" size="sm" className="flex items-center space-x-1">
-          <Truck className="h-3 w-3" />
+          <Truck className="h-2 w-2 sm:h-3 sm:w-3" />
           <span>Fast</span>
         </Badge>
       </div>
@@ -78,10 +78,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '', onQu
       {/* Wishlist button */}
       <button
         onClick={handleWishlistToggle}
-        className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-10 hover:scale-110"
+        className="absolute top-2 sm:top-3 right-2 sm:right-3 p-1.5 sm:p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-10 hover:scale-110"
       >
         <Heart 
-          className={`h-4 w-4 transition-colors ${isInWishlist(product.id) ? 'fill-red-500 text-red-500' : 'text-gray-400 hover:text-red-400'}`} 
+          className={`h-3 w-3 sm:h-4 sm:w-4 transition-colors ${isInWishlist(product.id) ? 'fill-red-500 text-red-500' : 'text-gray-400 hover:text-red-400'}`} 
         />
       </button>
 
@@ -112,23 +112,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '', onQu
         </div>
 
         {/* Product info */}
-        <div className="p-5">
+        <div className="p-3 sm:p-4 lg:p-5">
           {/* Brand */}
           {product.brand && (
             <p className="text-xs text-blue-600 font-medium mb-1 uppercase tracking-wide">{product.brand}</p>
           )}
 
-          <h3 className="text-sm font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors leading-tight">
+          <h3 className="text-xs sm:text-sm font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors leading-tight">
             {product.name}
           </h3>
           
           {/* Rating */}
-          <div className="flex items-center mb-3">
+          <div className="flex items-center mb-2 sm:mb-3">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`h-3.5 w-3.5 ${
+                  className={`h-3 w-3 sm:h-3.5 sm:w-3.5 ${
                     i < Math.floor(product.rating) 
                       ? 'text-yellow-400 fill-current' 
                       : 'text-gray-300'
@@ -136,14 +136,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '', onQu
                 />
               ))}
             </div>
-            <span className="text-xs text-gray-500 ml-2 font-medium">
+            <span className="text-xs text-gray-500 ml-1 sm:ml-2 font-medium">
               ({product.review_count})
             </span>
           </div>
 
           {/* Price */}
-          <div className="flex items-baseline space-x-2 mb-3">
-            <span className="text-xl font-bold text-gray-900">
+          <div className="flex items-baseline space-x-1 sm:space-x-2 mb-2 sm:mb-3">
+            <span className="text-lg sm:text-xl font-bold text-gray-900">
               ₹{product.price.toFixed(2)}
             </span>
             {product.compare_price && (
@@ -154,7 +154,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '', onQu
           </div>
 
           {/* Stock status */}
-          <div className="mb-4">
+          <div className="mb-3 sm:mb-4">
             {product.track_quantity && product.quantity !== undefined ? (
               product.quantity > 0 ? (
                 <Badge variant="success" size="sm">
@@ -171,13 +171,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '', onQu
       </Link>
 
       {/* Add to cart button */}
-      <div className="px-5 pb-5">
+      <div className="px-3 sm:px-4 lg:px-5 pb-3 sm:pb-4 lg:pb-5">
         <button
           onClick={handleAddToCart}
           disabled={product.track_quantity && product.quantity === 0}
-          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-xl hover:from-blue-700 hover:to-blue-800 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-2 font-medium shadow-lg hover:shadow-xl transform hover:scale-105"
+          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-2 sm:py-3 px-3 sm:px-4 rounded-lg sm:rounded-xl hover:from-blue-700 hover:to-blue-800 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-1 sm:space-x-2 font-medium shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base"
         >
-          <ShoppingCart className="h-4 w-4" />
+          <ShoppingCart className="h-3 w-3 sm:h-4 sm:w-4" />
           <span>Add to Cart</span>
         </button>
       </div>
